@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "koshish",
+    "slug": "snack-53f81df9-6529-4ec4-be0d-36258db00821",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.Koshish"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

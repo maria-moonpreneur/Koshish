@@ -1,0 +1,244 @@
+curl -X POST "https://koshishcdc.com/api/User/Add" -H  "accept: */*" -H  "Content-Type: multipart/form-data" -F "details.MothersProfession=" -F "Mobile=7890654321" -F "details.Language=" -F "details.FathersFullName=" -F "UserId=156382" -F "ChildName=App User 1" -F "details.FathersProfession=" -F "CreateDate=" -F "details.GeneralComplaint=" -F "isActive=true" -F "details.UserId=" -F "details.MotherTongue=" -F "details.IsNuclearFamily=" -F "ParentName=" -F "Role=" -F "UpdateDate=" -F "EmailId=appuser1@gmail.com" -F "details.IsJointFamily=" -F "details.LanguagesUsedByChild=" -F "EmployeeName=ABC" -F "details.ChildName=" -F "ChildDOB=2021-06-12 00:00:00.000" -F "Password=" -F "ChildGender=Female" -F "details.ProvisionalDiagnosis=" -F "details.MothersFullName=" -F "Age=1" -F "CreatedBy=" -F "Addresss="
+
+{
+  "response": {
+    "result": {
+      "id": "156382",
+      "message": "User Created Successfully.",
+      "isSuccess": true
+    },
+    "id": 1,
+    "exception": null,
+    "status": 5,
+    "isCanceled": false,
+    "isCompleted": true,
+    "isCompletedSuccessfully": true,
+    "creationOptions": 0,
+    "asyncState": null,
+    "isFaulted": false
+  }
+}
+
+
+// import React, { useState, useEffect } from 'react';
+// import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions, Image, Animated, Alert } from 'react-native';
+// import { useFonts, LexendDeca_700Bold } from '@expo-google-fonts/lexend-deca';
+// import { Inter_400Regular } from '@expo-google-fonts/inter';
+// import AppLoading from 'expo-app-loading';
+
+// const { width, height } = Dimensions.get('window');
+
+// const Complaint = ({ route, navigation }) => {
+//   const [complaint, setComplaint] = useState('');
+//   const [progress] = useState(new Animated.Value(route.params.progress || 0.9)); // Set to 100%
+
+//   const {
+//     parentName,
+//     email,
+//     mobileNumber,
+//     address,
+//     childName,
+//     gender,
+//     dateOfBirth,
+//     motherTongue,
+//     fatherName,
+//     fatherProfession,
+//     motherName,
+//     motherProfession,
+//     familyType,
+//   } = route.params;
+
+//   let [fontsLoaded] = useFonts({
+//     LexendDeca_700Bold,
+//     Inter_400Regular,
+//   });
+
+//   useEffect(() => {
+//     Animated.timing(progress, {
+//       toValue: 1, // Set progress to 100%
+//       duration: 1000, // Duration of the animation
+//       useNativeDriver: false, // Set to false for width animations
+//     }).start();
+//   }, []);
+
+//   const progressBarWidth = progress.interpolate({
+//     inputRange: [0, 1],
+//     outputRange: ['0%', '100%'], // Map the progress value to percentage
+//   });
+
+//   if (!fontsLoaded) {
+//     return <AppLoading />;
+//   }
+
+//   const handleRegister = () => {
+//     // Log all the details, including the (potentially empty) complaint
+//     console.log('Parent Name:', parentName);
+//     console.log('Email:', email);
+//     console.log('Mobile Number:', mobileNumber);
+//     console.log('Address:', address);
+//     console.log('Child Name:', childName);
+//     console.log('Gender:', gender);
+//     console.log('Date of Birth:', dateOfBirth.toDateString());
+//     console.log('Mother Tongue:', motherTongue);
+//     console.log('Father Name:', fatherName);
+//     console.log('Father Profession:', fatherProfession);
+//     console.log('Mother Name:', motherName);
+//     console.log('Mother Profession:', motherProfession);
+//     console.log('Family Type:', familyType);
+//     console.log('Complaint:', complaint);
+
+//     Alert.alert('Registration Successful', 'Registered successfully.');
+//     navigation.navigate('RegisterLogin');
+//   };
+
+//   const handleSkip = () => {
+//     console.log('Skipped Complaint Registration');
+//     // Navigate to the next screen or perform further actions
+//     navigation.navigate('NextScreen', {
+//       parentName,
+//       email,
+//       mobileNumber,
+//       address,
+//       childName,
+//       gender,
+//       dateOfBirth,
+//       motherTongue,
+//       fatherName,
+//       fatherProfession,
+//       motherName,
+//       motherProfession,
+//       familyType,
+//     });
+//   };
+
+//   return (
+//     <View style={styles.container}>
+//       <View style={styles.headerContainer}>
+//         <View style={styles.progressBarContainer}>
+//           <Animated.View style={[styles.progressBarFill, { width: progressBarWidth }]} />
+//         </View>
+//       </View>
+
+//       <Image source={require('../assets/Complaint.png')} style={styles.image} />
+
+//       <Text style={styles.title}>Do you have any complaints?</Text>
+
+//       <TextInput
+//         style={styles.textbox}
+//         placeholder="Enter your complaint here..."
+//         multiline={true}
+//         value={complaint}
+//         onChangeText={setComplaint}
+//       />
+
+//       <TouchableOpacity style={styles.button} onPress={handleRegister}>
+//         <Text style={styles.buttonText}>Register</Text>
+//       </TouchableOpacity>
+//     </View>
+//   );
+// };
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//     backgroundColor: '#97E7E1',
+//     paddingHorizontal: 20,
+//   },
+//   headerContainer: {
+//     flexDirection: 'row',
+//     justifyContent: 'space-between',
+//     alignItems: 'center',
+//     width: '100%',
+//     marginTop: 20,
+//   },
+//   progressBarContainer: {
+//     flex: 1,
+//     height: 5,
+//     backgroundColor: '#A9A9A9',
+//     borderRadius: 5,
+//     overflow: 'hidden',
+//     marginRight: 10,
+//   },
+//   progressBarFill: {
+//     height: '100%',
+//     backgroundColor: '#000000',
+//   },
+//   skipText: {
+//     fontSize: 16,
+//     fontFamily: 'LexendDeca_700Bold',
+//     color: 'black',
+//   },
+//   title: {
+//     fontSize: 22,
+//     fontFamily: 'LexendDeca_700Bold',
+//     color: '#333',
+//     textAlign: 'center',
+//     marginVertical: 10,
+//   },
+//   image: {
+//     width: width * 0.7,
+//     height: height * 0.3,
+//     resizeMode: 'contain',
+//     marginTop: 20,
+//   },
+//   textbox: {
+//     width: '100%',
+//     height: height * 0.3,
+//     backgroundColor: '#fff',
+//     borderRadius: 10,
+//     padding: 15,
+//     fontFamily: 'Inter_400Regular',
+//     fontSize: 16,
+//     textAlignVertical: 'top',
+//     marginBottom: 20,
+//   },
+//   button: {
+//     width: '70%',
+//     height: 50,
+//     backgroundColor: '#000000',
+//     borderRadius: 10,
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+//   buttonText: {
+//     color: '#fff',
+//     fontSize: 18,
+//     fontFamily: 'Inter_400Regular',
+//   },
+// });
+
+// export default Complaint;
+
+
+
+
+{
+  "response": {
+    "result": {
+      "id": "843033",
+      "message": "User Created Successfully.",
+      "isSuccess": true
+    },
+    "id": 2,
+    "exception": null,
+    "status": 5,
+    "isCanceled": false,
+    "isCompleted": true,
+    "isCompletedSuccessfully": true,
+    "creationOptions": 0,
+    "asyncState": null,
+    "isFaulted": false
+  }
+}
+
+curl -X POST "https://koshishcdc.com/api/User/Add" -H  "accept: */*" -H  "Content-Type: multipart/form-data" -F "details.MothersProfession=" -F "Mobile=7890123456" -F "details.Language=" -F "details.FathersFullName=" -F "UserId=843033" -F "ChildName=Test App User " -F "details.FathersProfession=" -F "CreateDate=" -F "details.GeneralComplaint=" -F "isActive=true" -F "details.UserId=" -F "details.MotherTongue=" -F "details.IsNuclearFamily=" -F "ParentName=" -F "Role=" -F "UpdateDate=" -F "EmailId=testuser@gmail.com" -F "details.IsJointFamily=" -F "details.LanguagesUsedByChild=" -F "EmployeeName=XYZ" -F "details.ChildName=" -F "ChildDOB=2021-06-12 00:00:00.000" -F "Password=" -F "ChildGender=Female" -F "details.ProvisionalDiagnosis=" -F "details.MothersFullName=" -F "Age=9 months" -F "CreatedBy=" -F "Addresss="
+
+{
+  "userId": "fecf549e-fd0e-4696-8425-90b60172e0ab",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImZlY2Y1NDllLWZkMGUtNDY5Ni04NDI1LTkwYjYwMTcyZTBhYiIsInJvbGUiOiJQYXJlbnQiLCJlbWFpbCI6ImFiY0BnbWFpbC5jb20iLCJuYmYiOjE3MjM2Mzg2ODMsImV4cCI6MTcyNjIzMDY4MywiaWF0IjoxNzIzNjM4NjgzfQ.wdWv1R-NAfcB5EcVMLRDqIoL1ruZEUhDlRDpQFU_-Io",
+  "message": "User Logged In",
+  "status": "Ok",
+  "alreadyRegistered": true
+}
