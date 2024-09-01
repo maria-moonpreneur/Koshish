@@ -1,39 +1,68 @@
-name: Build React Native App
+name: Build and Test Android App
 
 on:
   push:
     branches:
       - master
-  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm install
 
-      - name: Install Android SDK
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 30
-          script: ./gradlew assembleRelease
+    - name: Set up Android SDK
+      uses: android-actions/setup-android@v2
+      with:
+        api-level: 30
+        target: default
 
-      - name: Build Android APK
-        run: |
-          cd android
-          ./gradlew assembleRelease
+    - name: Start Emulator
+      run: |
+        nohup emulator @test -no-window -no-audio -no-boot-anim &
+        adb wait-for-device
+        adb shell input keyevent 82
+      shell: bash
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v2
-        with:
-          name: app-release.apk
-          path: android/app/build/outputs/apk/release/app-release.apk
+    - name: Wait for Emulator to Finish Booting
+      run: |
+        boot_completed=""
+        until [[ "$boot_completed" =~ "1" ]]; do
+          sleep 5
+          boot_completed=$(adb -s emulator-5554 shell getprop sys.boot_completed 2>&1 &)
+          echo "Waiting for emulator to boot..."
+        done
+      shell: bash
+
+    - name: Build APK
+      run: |
+        cd android
+        ./gradlew assembleRelease
+      shell: bash
+
+    - name: Terminate Emulator
+      run: |
+        emulator_pid=$(pgrep -f "emulator.*-avd")
+        if [ -n "$emulator_pid" ]; then
+          echo "Emulator running, killing..."
+          adb -s emulator-5554 emu kill || true
+        else
+          echo "No emulator running."
+        fi
+      shell: bash
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v2
+      with:
+        name: app-release.apk
+        path: android/app/build/outputs/apk/release/app-release.apk
