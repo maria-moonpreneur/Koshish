@@ -26,6 +26,9 @@ import Contact from './screens/Contact';
 import Feedback from './screens/Feebback';
 import UserData from './screens/UserData';
 import Reports from './screens/Reports';
+import Payment from './screens/Payment';
+import Success from './screens/Success';
+import Failure from './screens/Failure';
 
 const Stack = createStackNavigator();
 
@@ -52,6 +55,9 @@ const App = () => {
         <Stack.Screen name='Contact' component={Contact} options={{ headerShown: false }} />
         <Stack.Screen name='UserData' component={UserData} options={{ headerShown: false }} />
         <Stack.Screen name='Reports' component={Reports} options={{ headerShown: false }} />
+        <Stack.Screen name='Payment' component={Payment} options={{ headerShown: false }} />
+        <Stack.Screen name='Success' component={Success} options={{ headerShown: false }} />
+        <Stack.Screen name='Failure' component={Failure} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

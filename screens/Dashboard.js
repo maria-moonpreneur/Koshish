@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
-import { View, Text, Animated, TouchableOpacity, StyleSheet, Dimensions, ImageBackground, Image, BackHandler, Alert } from 'react-native';
+import { View, Text, Animated, TouchableOpacity, StyleSheet, Dimensions, Image, BackHandler, Alert } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation, useRoute, useFocusEffect } from '@react-navigation/native';
 
@@ -107,15 +107,17 @@ const Dashboard = ({route}) => {
         <View style={styles.innerContainer}>
           <Text style={styles.welcomeText}>{`Hi ${parentName},\nWelcome`}</Text>
 
-          <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ELARLATest', {
+          <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Payment', {
           userId,  // Pass the UserId as a prop
+          testName: 'ELA-RLA Test',
         })}>
             <Image source={require('../assets/Test.png')} style={styles.cardImage} />
             <Text style={styles.cardText}>Take the ELA-RLA Test</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('AutismTest', {
+          <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Payment', {
           userId,  // Pass the UserId as a prop
+          testName: 'Autism Test',
         })}>
             <Image source={require('../assets/Test.png')} style={styles.cardImage} />
             <Text style={styles.cardText}>Take the Autism Test</Text>
